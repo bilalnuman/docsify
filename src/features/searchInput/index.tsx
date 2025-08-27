@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { debounce } from "../../util/debounce";
 import clsx from "clsx";
+import { useParams } from "react-router-dom";
 
 interface Props {
     onChange?: (value: string) => void;
@@ -55,6 +56,7 @@ const SearchInput = forwardRef<SearchInputRef, Props>(
         ref
     ) => {
         const inputRef = useRef<HTMLInputElement>(null);
+        const router=useParams()
 
         const resetSearch = useCallback(() => {
             const params = new URLSearchParams(window.location.search);
@@ -115,7 +117,7 @@ const SearchInput = forwardRef<SearchInputRef, Props>(
 
             window.addEventListener("keydown", handleKeyDown);
             return () => window.removeEventListener("keydown", handleKeyDown);
-        }, [handleClick, resetSearch, keyName]);
+        }, [handleClick, resetSearch, keyName,router]);
 
         return (
             <div

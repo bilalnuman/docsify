@@ -87,7 +87,7 @@ const Resources = () => {
                 <Spinner />
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {!resources?.results?.length ? <div className="text-center col-span-12 dark:text-white">Data not found!</div> :
+                    {!resources?.results?.length ? <div className="col-span-12 py-4 text-center dark:text-white text-[#1D2530] text-sm font-semibold">Resources not found!</div> :
                         resources?.results?.map((folder: FolderTypes, idx: number) => (
                             <div
                                 key={idx}

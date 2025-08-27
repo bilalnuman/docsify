@@ -5,7 +5,7 @@ import api from "../api/api";
 export function useMembers() {
     return useQuery({
         queryKey: ["members"],
-        queryFn: () => api.get("/api/v1/invitations/").then((res) => res.data),
+        queryFn: () => api.get("/v1/invitations/").then((res) => res.data),
     });
 }
 

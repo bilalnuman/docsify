@@ -18,6 +18,6 @@ export function useFolder(id: number) {
     return useQuery({
         queryKey: ["folder", id],
         queryFn: () => api.get(`/v1/folders/${id}`).then((res) => res.data),
-        enabled: !!id, // only run if id is provided
+        enabled: !!id,
     });
 }

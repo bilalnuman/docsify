@@ -15,10 +15,11 @@ const pageRoutes = {
 };
 
 const TrainingComponent = () => {
-    const { setFilter } = useSearchQuery()
+    const { setFilter, params } = useSearchQuery()
+    const query = params.get("search") ? `?${params.get("search")}` : "";
     const [open, setOpen] = useState(false);
     const [openForm, setOpenForm] = useState(false);
-    const { data: training, isLoading, isError, error } = useTrainingGenerations()
+    const { data: training, isLoading, isError, error,isFetching } = useTrainingGenerations(query)
     const payload = parseJwt();
     const role = payload?.role ?? "";
 
@@ -55,15 +56,16 @@ const TrainingComponent = () => {
                     className="w-full !mt-0"
                     placeholder="Search topics by name..."
                     inputClass="placeholder:dark:text-[#FFFFFF80]"
-                    onClick={(value) => setFilter('search', value, { resetFilters: true })}
+                    onChange={(value) => setFilter('search', value, { resetFilters: true })}
                 />
             </div>
 
             {/* Cards */}
             <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {isLoading ? <div className="col-span-12 text-center"><Spinner /></div> :
-                        isError ? <div className="col-span-12 text-center bg-red-200 py-3 rounded-lg text-dark-default text-sm">{error.message}</div> :
+                    {isLoading || isFetching ? <div className="col-span-12 text-center"><Spinner /></div> :
+                    // @ts-ignore
+                        isError ? <div className="col-span-12 text-center bg-red-200 py-3 rounded-lg text-dark-default text-sm">{error?.response?.data?.message}</div> :
                             !training?.length ? <div className="text-sm font-semibold text-dark-default dark:text-white text-center col-span-12">Training not found</div> :
                                 Array.from({ length: 6 }).map((stat, idx) => (
                                     <div

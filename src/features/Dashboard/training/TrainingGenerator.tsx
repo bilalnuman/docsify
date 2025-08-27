@@ -32,6 +32,7 @@ const TrainingGeneratorComponent = () => {
     if (file) {
       body.append("original_file", file);
     }
+    // @ts-ignore
     create(body, {
       onSuccess(data) {
         toast.success(data?.message, { toastId: "Training created successfully" });

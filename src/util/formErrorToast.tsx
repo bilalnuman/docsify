@@ -15,8 +15,22 @@ export const formErrorToast = (error: any, isString = false) => {
             ))
         }
     </div>,
-        { toastId: "auth-toast",
-            autoClose:1600
-         }
+        {
+            toastId: "auth-toast",
+            autoClose: 1600
+        }
     );
+};
+
+export const getError = (error: any, isString = false) => {
+    if (isString) {
+        return error;
+    }
+    return axios.isAxiosError(error)
+        ? JSON.stringify(error.response?.data?.errors ?? {})
+            .replace(/[{}\[\]"']/g, '')
+            .replace(/,/g, '\n')
+            .replace(/[^:\n]+:/g, '')
+            .replaceAll('_', ' ')
+        : '';
 };

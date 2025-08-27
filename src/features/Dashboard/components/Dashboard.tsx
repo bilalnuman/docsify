@@ -6,13 +6,11 @@ import { LuUsers } from "react-icons/lu";
 import Icon from "../../../components/Icon";
 import clsx from "clsx";
 import Spinner from "../../../components/Spinner";
-import type { DashboardStatsResponse } from "../../sidebar/type";
 import { Link } from "react-router-dom";
 import { useStats } from "../../../hooks/useDashboard";
-import { formErrorToast } from "../../../util/formErrorToast";
 
 const DashboardComponent = () => {
-  const { data: statsData, isLoading, isError, error } = useStats()
+  const { data: statsData, isLoading } = useStats()
   const statsIconColors = [
     "bg-[#1556D41A]",
     "bg-[#21C25D1A]",
@@ -48,8 +46,6 @@ const DashboardComponent = () => {
       time: "1 Day ago"
     }
   ];
-
-  const apiData: DashboardStatsResponse = statsData
   const recent_activity = statsData?.data?.recent_activity ?? []
 
 
@@ -105,7 +101,7 @@ const DashboardComponent = () => {
           {
             !recent_activity?.length ? <div className="py-4 text-center dark:text-white text-[#1D2530] text-sm font-semibold">Recent Activity Not Available</div> :
 
-              recent_activity.map((activity, idx) => (
+              recent_activity.map((activity:any, idx:number) => (
                 <div
                   key={idx}
                   className="p-4 flex flex-col sm:flex-row sm:items-center justify-between 

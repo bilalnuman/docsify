@@ -1,10 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "../api/api";
-
 export function useCreateSupport() {
-    return useMutation<Error>({
-        mutationFn: (data) =>
-            api.post<any>("/v1/requests/", data).then((res) => res.data),
+    return useMutation({
+        mutationFn: async (formData:any) => {
+            const res = await api.post("/v1/requests/create/", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            return res.data;
+        },
     });
 }
 

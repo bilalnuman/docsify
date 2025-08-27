@@ -1,9 +1,10 @@
 import axios, { AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
+import { getCookie } from "../util/cookies";
 
 
 const api = axios.create({
-    baseURL:import.meta.env.VITE_API_BASE_URL,
-    withCredentials: true, 
+    baseURL: import.meta.env.VITE_API_BASE_URL,
+    withCredentials: true,
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -13,6 +14,10 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+        const token = getCookie("access_token")
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     (error: AxiosError) => {

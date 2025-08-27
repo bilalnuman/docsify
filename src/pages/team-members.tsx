@@ -9,7 +9,7 @@ import DeleteModal from "../components/modal/DeleteModal";
 import TeamInviteModal from "../components/modal/TeamInviteModal";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
-import { formErrorToast } from "../util/formErrorToast";
+import { formErrorToast, getError } from "../util/formErrorToast";
 import clsx from "clsx";
 import { useInviteMember, useMembers } from "../hooks/useTeam";
 
@@ -95,89 +95,93 @@ const TeamMembersListStatic: React.FC = () => {
         </header>
 
         <div className="p-3 space-y-3">
-          {isLoading ?
-            <Spinner /> :
-            data?.data?.results?.map((m: Member) => (
-              <div
-                key={m.id}
-                className="rounded-xl items-center border border-slate-200 dark:border-white/10 bg-white dark:bg-[#1A1B20] px-4 py-3 flex justify-between"
-              >
-                {/* Left */}
-                <div className="flex items-center gap-3 min-w-0 ">
-                  <div className="shrink-0 w-9 h-9 rounded-full bg-[#1556D4] text-white flex items-center justify-center text-sm font-semibold">
-                    {initials(m.name)}
-                  </div>
-
-                  <div className="min-w-0">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-                      <div className="flex items-center gap-1 text-slate-800 dark:text-white font-medium">
-                        <span className="truncate">{m.name}</span>
-                        {m.verified && <FiCheckCircle className="text-green-500" />}
+          {isError ?
+            <div className="bg-red-100 py-3 rounded-lg w-full text-center text-sm font-semibold">{getError(error)}</div> :
+            isLoading ?
+              <Spinner /> :
+              data?.data.results.length == 0 ?
+                <div className="py-4 text-center dark:text-white text-[#1D2530] text-sm font-semibold">No members found</div> :
+                data?.data?.results?.map((m: Member) => (
+                  <div
+                    key={m.id}
+                    className="rounded-xl items-center border border-slate-200 dark:border-white/10 bg-white dark:bg-[#1A1B20] px-4 py-3 flex justify-between"
+                  >
+                    {/* Left */}
+                    <div className="flex items-center gap-3 min-w-0 ">
+                      <div className="shrink-0 w-9 h-9 rounded-full bg-[#1556D4] text-white flex items-center justify-center text-sm font-semibold">
+                        {initials(m.name)}
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-3 text-[12px] text-slate-600 dark:text-[#FFFFFF80]">
-                        <span>Training <span className="ps-1">{m.trainingDone ?? 0}/{m.trainingTotal ?? 0}</span></span>
-                        <span>•</span>
-                        <span>Safety Meetings <span className="ps-1">{m.meetingsDone ?? 0}/{m.meetingsTotal ?? 0}</span></span>
-                        <span>•</span>
-                        <span>Resources <span className="ps-1">{m.resourcesDone ?? 0}/{m.resourcesTotal ?? 0}</span></span>
+
+                      <div className="min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                          <div className="flex items-center gap-1 text-slate-800 dark:text-white font-medium">
+                            <span className="truncate">{m.name}</span>
+                            {m.verified && <FiCheckCircle className="text-green-500" />}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-3 text-[12px] text-slate-600 dark:text-[#FFFFFF80]">
+                            <span>Training <span className="ps-1">{m.trainingDone ?? 0}/{m.trainingTotal ?? 0}</span></span>
+                            <span>•</span>
+                            <span>Safety Meetings <span className="ps-1">{m.meetingsDone ?? 0}/{m.meetingsTotal ?? 0}</span></span>
+                            <span>•</span>
+                            <span>Resources <span className="ps-1">{m.resourcesDone ?? 0}/{m.resourcesTotal ?? 0}</span></span>
+                          </div>
+                        </div>
+                        <div className="text-xs text-slate-500 dark:text-white/50 truncate">{m.email}</div>
                       </div>
                     </div>
-                    <div className="text-xs text-slate-500 dark:text-white/50 truncate">{m.email}</div>
-                  </div>
-                </div>
 
-                {/* Right */}
-                <div className="flex items-center gap-4">
-                  <div className="text-right">
-                    <div className="relative inline-block">
+                    {/* Right */}
+                    <div className="flex items-center gap-4">
+                      <div className="text-right">
+                        <div className="relative inline-block">
+                          <button
+                            type="button"
+                            disabled={isPending}
+                            onClick={() => !isPending && setOpenMenuId((v) => (v === m.id ? null : m.id))}
+                            className={`h-8 px-3 rounded-3xl capitalize text-xs font-medium inline-flex items-center gap-1 focus:outline-none focus-visible:ring-2 ${roleStyles[m.role]}`}
+                          >
+                            {m.role}
+                            <FiChevronDown />
+                          </button>
+
+                          {openMenuId === m.id && (
+                            <div
+                              className="absolute right-0 mt-1 w-36 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-[#2C2D34] shadow-lg z-10"
+                              onMouseLeave={() => setOpenMenuId(null)}
+                            >
+                              {(["editor", "viewer"] as Role[]).map((r) => (
+                                <button
+                                  key={r}
+                                  type="button"
+                                  className="block w-full text-left px-3 py-2 capitalize text-sm hover:bg-slate-50 dark:hover:bg-white/5 text-slate-700 dark:text-gray-100"
+                                  onClick={() => {
+                                    updateRole(m.id, r);
+                                    setOpenMenuId(null);
+                                  }}
+                                >
+                                  {r}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="text-xs text-slate-400 dark:text-gray-400 mt-1">
+                          Last active: {m.lastActive}
+                        </div>
+                      </div>
+
                       <button
                         type="button"
-                        disabled={isPending}
-                        onClick={() => !isPending && setOpenMenuId((v) => (v === m.id ? null : m.id))}
-                        className={`h-8 px-3 rounded-3xl capitalize text-xs font-medium inline-flex items-center gap-1 focus:outline-none focus-visible:ring-2 ${roleStyles[m.role]}`}
+                        onClick={() => removeMember(m.id)}
+                        className="text-red-500 hover:text-red-600"
+                        title="Remove member"
                       >
-                        {m.role}
-                        <FiChevronDown />
+                        <FiTrash2 className="w-5 h-5" />
                       </button>
-
-                      {openMenuId === m.id && (
-                        <div
-                          className="absolute right-0 mt-1 w-36 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-[#2C2D34] shadow-lg z-10"
-                          onMouseLeave={() => setOpenMenuId(null)}
-                        >
-                          {(["editor", "viewer"] as Role[]).map((r) => (
-                            <button
-                              key={r}
-                              type="button"
-                              className="block w-full text-left px-3 py-2 capitalize text-sm hover:bg-slate-50 dark:hover:bg-white/5 text-slate-700 dark:text-gray-100"
-                              onClick={() => {
-                                updateRole(m.id, r);
-                                setOpenMenuId(null);
-                              }}
-                            >
-                              {r}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="text-xs text-slate-400 dark:text-gray-400 mt-1">
-                      Last active: {m.lastActive}
                     </div>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => removeMember(m.id)}
-                    className="text-red-500 hover:text-red-600"
-                    title="Remove member"
-                  >
-                    <FiTrash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            ))}
+                ))}
         </div>
       </section>
       <DeleteModal
