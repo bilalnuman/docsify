@@ -29,9 +29,9 @@ const LoginPage: React.FC = () => {
           secure: true,
           sameSite: "strict"
         });
+        router("/dashboard", { replace: true })
         toast.success(data?.message, { toastId: "login-success" });
         reset()
-        router("/dashboard", { replace: true })
       },
       onError(error) {
         // @ts-ignore

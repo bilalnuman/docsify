@@ -13,7 +13,7 @@ const Hero = () => {
                     <h1 className="xl:text-5xl lg:text-4xl md:text-2xl text-xl font-bold leading-tight px-12 dark:text-white">
                         Empower Tool-Specific{" "}
                         <span className="text-blue-600">Training</span> {" "}
-                        <span className="text-blue-600">&Compliance</span>
+                        <span className="text-blue-600">& Compliance</span>
                     </h1>
                     <p className="mt-4 text-[#1D2530E5] text-lg mx-auto dark:text-[#FFFFFF80]">
                         Untrained workers cause accidents and OSHA fines. Stop wasting hours creating training. Upload any manual → instantly generate tool-specific training using OSHA guidelines. Print, sign, and stay compliant in English or Spanish.
