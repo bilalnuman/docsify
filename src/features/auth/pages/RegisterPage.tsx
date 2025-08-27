@@ -50,7 +50,7 @@ const RegisterPage: React.FC = () => {
                             <DarkModeToggle />
                         </div>
                         <AuthForm
-                            className='max-w-[500px] mx-auto sm:h-full h-[calc(100vh_-_9rem)] sm:block flex flex-col justify-center'
+                            className='max-w-[500px] mx-auto sm:h-full h-[calc(100vh_-_12rem)] sm:block flex flex-col justify-center'
                             control={control}
                             fields={fields}
                             errors={errors}
