@@ -20,7 +20,7 @@ const Navbar = () => {
         </Link>
 
         {/* Links */}
-        <nav className="hidden dm:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8">
           <NavLink to="/" end className={linkBase}>
             Home
           </NavLink>
