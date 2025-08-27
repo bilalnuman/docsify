@@ -43,7 +43,7 @@ const plans = [
 const Pricing = () => {
     const [open, setOpen] = useState(false);
     return (
-        <section className="py-11 text-center px-6" >
+        <section className="py-11 text-center sm:px-6 px-4" >
             <h2 className="text-3xl font-bold text-[#1D2530] dark:text-white">Choose Your Plan</h2>
             <div className="text-lg text-[#1D253080] pb-11 dark:text-[#FFFFFF80]">Start with a free trial, then scale as your team grows</div>
             <div className=" grid grid-cols-1 md:grid-cols-3 gap-6">

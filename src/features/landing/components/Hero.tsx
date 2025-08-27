@@ -5,8 +5,8 @@ import { FaRegStar } from "react-icons/fa6";
 const Hero = () => {
     return (
         <section className=" py-16 text-center dark:bg-black hero">
-            <div className=" flex justify-center w-full pb-[400px]">
-                <div className=" max-w-[680px] mx-auto z-10 px-5">
+            <div className=" flex justify-center w-full pb400">
+                <div className=" max-w-[680px] mx-auto z-10 sm:px-6 px-4">
                     <div className="text-[#1556D4] text-sm rounded-full px-2 py-1 border border-[#1556D4] w-fit mx-auto mb-3 flex items-center gap-x-2 dark:text-white">
                         <FaRegStar />
                         AI-Powered Safety & Compliance Platform</div>

@@ -55,7 +55,7 @@ const TestimonialCard: React.FC<Testimonial> = ({ quote, name, role }) => (
 const TestimonialsSection: React.FC = () => {
     return (
         <section>
-            <div className="px-6">
+            <div className="sm:px-6 px-4">
                 <h2 className="text-center text-2xl md:text-3xl font-semibold text-slate-800 dark:text-white">
                     What Our Clients Say
                 </h2>

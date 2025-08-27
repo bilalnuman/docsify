@@ -2,7 +2,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 const CTA = () => {
     return (
-        <section className="text-center bg-white dark:bg-[#2C2D34] py-12">
+        <section className="text-center bg-white dark:bg-[#2C2D34] py-12 px-4">
             <div className="bg-[#1556D4] dark:bg-black max-w-[850px] mx-auto py-10 rounded-xl">
                 <h3 className="text-xl font-semibold text-white px-4">
                     Ready to Revolutionize Your Safety Program?

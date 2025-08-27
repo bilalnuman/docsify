@@ -20,7 +20,7 @@ const Navbar = () => {
         </Link>
 
         {/* Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden dm:flex items-center gap-8">
           <NavLink to="/" end className={linkBase}>
             Home
           </NavLink>
@@ -37,19 +37,40 @@ const Navbar = () => {
           <DarkModeToggle />
           <Link
             to="/login"
-            className={`${btnBase} border border-[#1556D4] text-[#1556D4] dark:!text-white hover:bg-blue-50 dark:hover:bg-white/10 dark:!border-white`}
+            className={`${btnBase} md:block hidden border border-[#1556D4] text-[#1556D4] dark:!text-white hover:bg-blue-50 dark:hover:bg-white/10 dark:!border-white`}
           >
             Sign In
           </Link>
           <Link
             to="/register"
-            className={`${btnBase} bg-[#1556D4] dark:!bg-white dark:!text-dark-default text-white hover:bg-[#1556D4]/90`}
+            className={`${btnBase} bg-[#1556D4] hidden md:block dark:!bg-white dark:!text-dark-default text-white hover:bg-[#1556D4]/90`}
           >
             Sign Up
           </Link>
-          
+
         </div>
       </div>
+      {/* mobile links */}
+      <div className="pb-4 md:hidden px-4">
+        <nav className="flex items-center justify-between">
+          <NavLink to="/" end className={linkBase}>
+            Home
+          </NavLink>
+          <a href="#pricing" className={linkBase}>
+            Pricing
+          </a>
+          <NavLink to="/contactus" className={linkBase}>
+            Contact Us
+          </NavLink>
+          <Link
+            to="/login"
+            className={`${btnBase} md:hidden block text-dark-default dark:text-blue-default font-semibold !p-0 hover:bg-blue-50 dark:hover:bg-white/10 dark:!border-white`}
+          >
+            Sign In
+          </Link>
+        </nav>
+      </div>
+      {/* end mobile links */}
     </header>
   );
 };

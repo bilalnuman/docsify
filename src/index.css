@@ -124,19 +124,24 @@ a.active {
     @apply !bg-transparent !p-0
 }
 
-.dark .hero {
-    background: url("./assets/images/dark_mode.png");
-}
+@media(min-width:1024px) {
+    .pb400{
+        padding-bottom: 400px;
+    }
+    .dark .hero {
+        background: url("./assets/images/dark_mode.png");
+    }
 
-.hero {
-    background: url("./assets//images//light_mode.png");
-}
+    .hero {
+        background: url("./assets//images//light_mode.png");
+    }
 
-.hero,
-.dark .hero {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    .hero,
+    .dark .hero {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 }
 
 body .bg-gradient:hover {

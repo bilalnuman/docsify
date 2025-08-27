@@ -12,7 +12,7 @@ const features = [
 const Features = () => {
     return (
         <section className="dark:bg-black">
-            <div className="px-6 grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            <div className="sm:px-6 px-4 grid grid-cols-1 md:grid-cols-4 gap-6 text-center bg-re">
                 {features.map((f, i) => (
                     <div key={i} className="bg-white dark:bg-[#2C2D34] p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center justify-center">
                         <div className="text-blue-600 mb-4 w-11 h-11 rounded-xl flex items-center justify-center bg-[#1556D41A] dark:bg-white/10 dark:text-white">{f.icon}</div>

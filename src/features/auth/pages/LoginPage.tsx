@@ -87,7 +87,7 @@ const LoginPage: React.FC = () => {
                 </div>
               }
             >
-              <div className='text-center text-sm text-[#1D253080] mt-2'>
+              <div className='text-center text-sm text-[#1D253080] dark:text-white mt-2'>
                 Don’t have an account? <Link to="/register" className="text-[#1556D4] underline font-bold">Sign Up</Link>
               </div>
             </AuthForm>
