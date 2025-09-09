@@ -8,9 +8,6 @@ import { formErrorToast } from '../util/formErrorToast';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { clearCookiesAndStorage } from '@/helpers/logoutUser';
 import { useAcceptInvitation } from '@/hooks/useTeam';
-import AppLogo from "@/assets/images/logo.svg";
-import AppDarkLogo from "@/assets/images/dark-logo.svg";
-import DarkModeToggle from "@/components/DarkModeToggle";
 import PublicLayout from '@/components/PublicLayout';
 const fields = [
     { name: 'newPassword', label: 'Password', type: 'password', placeholder: '*********' },
