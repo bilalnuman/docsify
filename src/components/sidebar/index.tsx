@@ -66,7 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({ logo, menuItems, sticky = true, toggl
 
   return (
     <>
-      <div className="relative sm::h-[calc(100vh-150px)] h-[calc(100vh-320px)]">
+      <div className="relative  ">
 
         {logo && (
           <div className={clsx("px-6 py-4 border-b border-[#1D25301A] dark:border-black/20", logoClassName)}>

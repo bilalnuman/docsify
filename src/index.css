@@ -119,8 +119,8 @@ a.active {
 .dark .dark-form-field input,
 .dark .dark-form-field textarea,
 .dark .dark-form-field select {
-    /* background: #1A1B20 !important; */
-    /* border-color: #1A1B20 !important; */
+    background: #1A1B20 !important;
+    border-color: #1A1B20 !important;
 }
 
 form label {
