@@ -40,7 +40,7 @@ const AcceptInvitation = () => {
             invitation_token: token
         }
         resetPassword(payload, {
-            onSuccess: (res) => {
+            onSuccess: (res:any) => {
                 toast.success(res?.message)
                 reset()
                 clearCookiesAndStorage()
