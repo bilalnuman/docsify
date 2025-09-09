@@ -10,7 +10,10 @@ lerna-debug.log*
 node_modules
 dist
 .zencoder
+<<<<<<< HEAD
 vercel.json
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 dist-ssr
 *.local
 env

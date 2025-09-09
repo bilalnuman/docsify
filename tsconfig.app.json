@@ -23,12 +23,16 @@
     "noUnusedParameters": false,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
+<<<<<<< HEAD
     "noUncheckedSideEffectImports": true,
     "paths": {
       "@/*": [
         "./src/*"
       ]
     }
+=======
+    "noUncheckedSideEffectImports": true
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
   },
   "include": [
     "src"

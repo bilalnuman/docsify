@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "../api/api";
 
@@ -29,3 +30,28 @@ export function useResourceDownload() {
         },
     });
 }
+=======
+import { useQuery } from "@tanstack/react-query";
+import api from "../api/api";
+
+
+export function useResources() {
+    return useQuery<any>({
+        queryKey: ["resources"],
+        queryFn: () => api.get<any>("/v1/resources/").then((res) => res.data),
+    });
+}
+export function usevFolders() {
+    return useQuery<any>({
+        queryKey: ["folders"],
+        queryFn: () => api.get<any>("/v1/folders/").then((res) => res.data),
+    });
+}
+export function useFolder(id: number) {
+    return useQuery({
+        queryKey: ["folder", id],
+        queryFn: () => api.get(`/v1/folders/${id}`).then((res) => res.data),
+        enabled: !!id,
+    });
+}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1

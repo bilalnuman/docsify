@@ -47,11 +47,19 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
                         className={`${iconPosition === 'left' ? "ps-8" : ""} w-full px-3 py-2 border rounded-md focus:outline-none relative focus:ring-2 ${error ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
                             } ${classNames?.input}`}
                         {...rest}
+<<<<<<< HEAD
                         autoComplete={Math.random()}
                     />
                     {enablePasswordToggle &&
                         <button type='button' onClick={() => setSecure(!secure)} className=' absolute end-3 top-1/2 -translate-y-1/2'>
                             {secure ? <FaRegEye className='text-lg text-gray-700' /> : <FaRegEyeSlash className='text-lg text-gray-700' />}
+=======
+
+                    />
+                    {enablePasswordToggle &&
+                        <button type='button' onClick={() => setSecure(!secure)} className=' absolute end-3 top-1/2 -translate-y-1/2'>
+                            {secure ? <FaRegEye className='text-lg text-gray-700 dark:text-white' />: <FaRegEyeSlash className='text-lg text-gray-700 dark:text-white' />}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                         </button>}
                 </div>
                 {error && <p className="text-sm text-red-500 mt-1">{error.message}</p>}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../api/api";
 export function useCreateTrainingGenerations() {
@@ -37,5 +38,21 @@ export function useTrainingFolderFiles(id: number,) {
     return useQuery<any>({
         queryKey: ["training-folders", id],
         queryFn: () => api.get<any>(`/v1/training-generations/${id}/`).then((res) => res.data),
+=======
+import { useMutation, useQuery } from "@tanstack/react-query";
+import api from "../api/api";
+
+export function useCreateTrainingGenerations() {
+    return useMutation<Error>({
+        mutationFn: (data: any) =>
+            api.post<any>("/v1/training-generations/", data).then((res) => res.data),
+    });
+}
+
+export function useTrainingGenerations(query?: string) {
+    return useQuery<any>({
+        queryKey: ["training-generations",query],
+        queryFn: () => api.get<any>(`/v1/training-generations${query}`).then((res) => res.data),
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     });
 }

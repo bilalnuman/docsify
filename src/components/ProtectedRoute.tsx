@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAppContext } from "@/context/AppContext";
 
@@ -18,6 +19,22 @@ const { user, isReady } = useAppContext();
             return <Navigate to="/" replace />;
         }
         return <Outlet />;
+=======
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+
+interface ProtectedRouteProps {
+    isAuth: boolean;
+    redirectPath?: string;
+}
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+    isAuth,
+    redirectPath = "/login",
+}) => {
+    if (!isAuth) {
+        return <Navigate to={redirectPath} replace />;
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     }
     return <Outlet />;
 };

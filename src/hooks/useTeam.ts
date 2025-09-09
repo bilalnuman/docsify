@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+=======
+import { useMutation, useQuery } from "@tanstack/react-query";
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 import api from "../api/api";
 
 export function useMembers() {
@@ -10,6 +14,7 @@ export function useMembers() {
 }
 
 export function useChangeRole() {
+<<<<<<< HEAD
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: ({ role, id }: { role: string, id: number }) =>
@@ -19,6 +24,11 @@ export function useChangeRole() {
                 queryKey: ["members"],
             });
         },
+=======
+    return useMutation({
+        mutationFn: ({ role, id }: { role: string, id: number }) =>
+            api.post(`/v1/users/${id}/change_role/`, { role: role }).then((res) => res.data),
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     });
 }
 export function useInviteMember() {
@@ -39,6 +49,7 @@ export function useResendInvitation() {
             api.post(`/v1/invitations/${id}/resend/`, payload).then((res) => res.data),
     });
 }
+<<<<<<< HEAD
 
 export function useDeleteMember() {
     const queryClient = useQueryClient();
@@ -54,3 +65,5 @@ export function useDeleteMember() {
 }
 
 
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1

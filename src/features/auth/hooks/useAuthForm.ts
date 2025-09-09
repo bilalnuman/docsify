@@ -9,8 +9,11 @@ export const useAuthForm = <T extends FieldValues>(schema: ZodType<any, any, any
     register,
     handleSubmit,
     reset,
+<<<<<<< HEAD
     setValue,
     trigger,
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     control,
     formState: { errors, isSubmitting },
   } = useForm<T>({
@@ -29,7 +32,10 @@ export const useAuthForm = <T extends FieldValues>(schema: ZodType<any, any, any
     control,
     isSubmitting,
     onSubmit,
+<<<<<<< HEAD
     setValue,
     trigger
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
   };
 };

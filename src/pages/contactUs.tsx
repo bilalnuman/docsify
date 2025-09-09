@@ -1,10 +1,22 @@
 import { Controller, useForm } from "react-hook-form";
+<<<<<<< HEAD
 import InputField from "@/features/auth/components/InputField";
 import Navbar from "@/features/landing/components/Navbar";
 import { BsSend } from "react-icons/bs";
 import Button from "@/components/Button";
 import { PiEnvelopeLight } from "react-icons/pi";
 import { CiLocationOn, CiClock2 } from "react-icons/ci";
+=======
+import InputField from "../features/auth/components/InputField";
+import Navbar from "../features/landing/components/Navbar";
+import { BsSend } from "react-icons/bs";
+import Button from "../components/Button";
+import { PiEnvelopeLight } from "react-icons/pi";
+import { CiLocationOn, CiClock2 } from "react-icons/ci";
+import { toast } from "react-toastify";
+import { useApi } from "../features/auth/services/authService";
+import { formErrorToast } from "../util/formErrorToast";
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
 type ContactForm = {
   name: string;
@@ -15,6 +27,10 @@ type ContactForm = {
 };
 
 const ContactUs = () => {
+<<<<<<< HEAD
+=======
+  const { request, loading } = useApi();
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
   const {
     handleSubmit,
     control,
@@ -31,6 +47,23 @@ const ContactUs = () => {
   });
 
   const onSubmit = async (form: ContactForm) => {
+<<<<<<< HEAD
+=======
+    const { data, error } = await request({
+      endpoint: "v1/contact/",
+      data: form,
+      method: "POST",
+    });
+
+    if (data?.success) {
+      toast.success(data?.message);
+      reset();
+    } else {
+      // @ts-ignore
+      const msg = error?.response?.data?.message;
+      formErrorToast(msg, true);
+    }
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
   };
 
   return (
@@ -197,9 +230,16 @@ const ContactUs = () => {
                           border-gray-300 dark:border-white/10
                           bg-white dark:bg-white/5
                           text-gray-800 dark:text-gray-200
+<<<<<<< HEAD
                           focus:ring-blue-300 ${errors.message
                             ? "border-red-400 focus:ring-red-300"
                             : ""
+=======
+                          focus:ring-blue-300 ${
+                            errors.message
+                              ? "border-red-400 focus:ring-red-300"
+                              : ""
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                           }`}
                       />
                       {errors.message && (
@@ -214,10 +254,18 @@ const ContactUs = () => {
 
               <Button
                 type="submit"
+<<<<<<< HEAD
                 className="w-full h-11"
                 iconLeft={<BsSend />}
               >
                 Send Message
+=======
+                disabled={loading}
+                className="w-full h-11"
+                iconLeft={<BsSend />}
+              >
+                {loading ? "Sending..." : "Send Message"}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
               </Button>
             </form>
           </section>

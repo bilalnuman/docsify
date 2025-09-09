@@ -56,9 +56,13 @@ const config = {
           default: "#1556D4",
         },
         dark: {
+<<<<<<< HEAD
           default: "#1D2530",
           "default-dark": "#2C2D34",
           "dark-bg": "#1A1B20",
+=======
+          default: "#1D2530"
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
         },
         gray: {
           default: "#1D253080"

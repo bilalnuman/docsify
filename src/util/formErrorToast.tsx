@@ -11,7 +11,11 @@ export const formErrorToast = (error: any, isString = false) => {
     toast.error(isString ? error : <div>
         {
             errors.split('\n').map((line, i) => (
+<<<<<<< HEAD
                 <div key={i} > {line??"Something went wrong. Please try again later."} </div>
+=======
+                <div key={i} > {line} </div>
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
             ))
         }
     </div>,

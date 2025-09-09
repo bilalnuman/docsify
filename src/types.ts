@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// src/types/auth.ts
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 export interface LoginPayload {
   email: string;
   password: string;
@@ -21,6 +25,7 @@ export interface User {
   role: string;
 }
 
+<<<<<<< HEAD
 export type UserProfile = {
   email: string;
   name: string;
@@ -48,6 +53,10 @@ export type UserResponse = {
 };
 
 
+=======
+
+// src/types/company.ts
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 export interface Company {
   id: number;
   name: string;
@@ -58,6 +67,10 @@ export interface CompanyPayload {
   name: string;
 }
 
+<<<<<<< HEAD
+=======
+// src/types/team.ts
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 export interface Member {
   id: number;
   name: string;
@@ -70,6 +83,7 @@ export interface InvitePayload {
   name: string;
   role: string;
 }
+<<<<<<< HEAD
 
 
 export type Plan = {
@@ -87,3 +101,5 @@ export type Plan = {
   is_active: boolean;
   title:string
 };
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1

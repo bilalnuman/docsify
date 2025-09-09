@@ -144,6 +144,10 @@ const Icon: React.FC<PropsTypes> = ({ name, className = "", size = "1.5em" }) =>
             <svg
 
                 className={className}
+<<<<<<< HEAD
+=======
+                // stroke="currentColor"
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                 width={size}
                 height={size}
                 viewBox="0 0 720 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,6 +178,10 @@ const Icon: React.FC<PropsTypes> = ({ name, className = "", size = "1.5em" }) =>
         formLock: (
             <svg
                 className={className}
+<<<<<<< HEAD
+=======
+                // stroke="currentColor"
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                 width={size}
                 height={size}
                 viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg">

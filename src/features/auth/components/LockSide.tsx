@@ -1,5 +1,9 @@
 import React from 'react'
+<<<<<<< HEAD
 import Icon from '@/components/Icon'
+=======
+import Icon from '../../../components/Icon'
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
 const LockSide = () => {
     return (

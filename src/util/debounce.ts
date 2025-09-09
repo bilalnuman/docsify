@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// utils/debounce.ts
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 export function debounce<T extends (...args: any[]) => void>(
   func: T,
   wait: number

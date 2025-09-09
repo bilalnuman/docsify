@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useMemo, useState } from "react";
 import Icon from "@/components/Icon";
 import { FaRegEye } from "react-icons/fa";
@@ -11,6 +12,19 @@ import Button from "@/components/Button";
 import { useFolderById, useResourceDownload } from "@/hooks/useResource";
 import { formErrorToast } from "@/util/formErrorToast";
 import { toast } from "react-toastify";
+=======
+import { useEffect, useMemo, useState } from "react";
+import Icon from "../components/Icon";
+import { FaRegEye } from "react-icons/fa";
+import { MdOutlineFileDownload } from "react-icons/md";
+import SearchInput from "../features/searchInput";
+import { useApi } from "../features/auth/services/authService";
+import useSearchQuery from "../util/querySearch";
+import { useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import { parseJwt } from "../util/jwt";
+import Button from "../components/Button";
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
 interface ResourceFiles {
     id: number;
@@ -47,28 +61,62 @@ const formatBytes = (bytes?: number) => {
     return `${(bytes / Math.pow(k, i)).toFixed(i === 0 ? 0 : 1)} ${sizes[i]}`;
 };
 
+<<<<<<< HEAD
 const getFilename = (url: string, contentDisposition?: string | null) => {
+=======
+/** Try to derive a sensible filename (fallbacks if header absent) */
+const getFilename = (url: string, contentDisposition?: string | null) => {
+    // Content-Disposition first
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     if (contentDisposition) {
         const m = /filename\*=UTF-8''([^;]+)|filename="?([^"]+)"?/i.exec(contentDisposition);
         const fromHeader = decodeURIComponent(m?.[1] || m?.[2] || "");
         if (fromHeader) return fromHeader;
     }
+<<<<<<< HEAD
     const base = url.split("#")[0].split("?")[0];
     const last = base.substring(base.lastIndexOf("/") + 1);
     if (last) return last;
+=======
+    // URL path
+    const base = url.split("#")[0].split("?")[0];
+    const last = base.substring(base.lastIndexOf("/") + 1);
+    if (last) return last;
+    // Sensible default
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     return "download.pdf";
 };
 
 const ResourcesPreview = () => {
     const { id } = useParams();
+<<<<<<< HEAD
     const { setFilter, queryString, page, goToPage } = useSearchQuery()
     const { data, isLoading } = useFolderById(Number(id), queryString);
     const payload = parseJwt();
+=======
+    const { request, loading, data } = useApi();
+    const { setFilter, groupedQueries } = useSearchQuery();
+    const payload = parseJwt();                    // may be null
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     const role = payload?.role ?? "";
 
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [downloadingId, setDownloadingId] = useState<number | null>(null);
+<<<<<<< HEAD
     const { mutate, isPending } = useResourceDownload()
+=======
+
+    const getResourceFolderFiles = async (quer = "") => {
+        await request({
+            endpoint: `v1/folders/${id}?${quer ?? ""}`,
+            method: "GET",
+        });
+    };
+
+    useEffect(() => {
+        getResourceFolderFiles(groupedQueries?.search);
+    }, [groupedQueries?.search, id]);
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
     const files: ResourceFiles[] = useMemo(
         () => (data?.files ?? []) as ResourceFiles[],
@@ -86,6 +134,7 @@ const ResourcesPreview = () => {
     const forceDownload = async (file: ResourceFiles) => {
         const url = file.file_url || file.file;
         if (!url) return;
+<<<<<<< HEAD
         console.log(3456786543)
 
         try {
@@ -103,6 +152,16 @@ const ResourcesPreview = () => {
                     formErrorToast(error)
                 },
             })
+=======
+
+        try {
+            const link = document.createElement("a");
+            link.href = file.file_url;
+            link.download = "invoice.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
         } catch (err) {
 
         } finally {
@@ -112,6 +171,10 @@ const ResourcesPreview = () => {
 
     return (
         <div className="flex flex-col gap-5 pt-3">
+<<<<<<< HEAD
+=======
+            {/* Header */}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
             <div className="flex items-center justify-between">
                 <div>
                     <div className="text-[28px] font-semibold text-dark-default dark:text-white">
@@ -125,6 +188,11 @@ const ResourcesPreview = () => {
                     <Icon name="training" className="text-[10px]" />3/140 Available
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+
+            {/* Limited Access Card */}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
             {role === "admin" &&
                 <div
                     className="w-full rounded-xl bg-white dark:bg-[#2C2D34] px-4 py-3 md:px-5 md:py-4 border border-transparent dark:border-gray-700"
@@ -132,7 +200,11 @@ const ResourcesPreview = () => {
                 >
                     <div className="flex items-center justify-between gap-4">
                         <div className="min-w-0">
+<<<<<<< HEAD
                             <div className="text-[15px] !font-medium text-slate-800 dark:text-white">
+=======
+                            <div className="text-[15px] font-semibold text-slate-800 dark:text-white">
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                                 Limited Access
                             </div>
                             <p className="text-sm text-slate-500 dark:text-white/50 truncate">
@@ -148,6 +220,11 @@ const ResourcesPreview = () => {
                     </div>
                 </div>
             }
+<<<<<<< HEAD
+=======
+
+            {/* Search */}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
             <div className="h-[72px] rounded-xl bg-white dark:bg-[#2C2D34] flex items-center px-4 border border-transparent dark:border-gray-700">
                 <SearchInput
                     className="w-full !mt-0"
@@ -156,7 +233,13 @@ const ResourcesPreview = () => {
                     onChange={(value) => setFilter("search", value, { isMultiple: false })}
                 />
             </div>
+<<<<<<< HEAD
             {isLoading ? (
+=======
+
+            {/* Resource List */}
+            {loading ? (
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                 <Spinner />
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -176,6 +259,7 @@ const ResourcesPreview = () => {
                                     {file?.name}
                                 </h3>
 
+<<<<<<< HEAD
                                 <p className="scroll-hidden text-sm pt-1 text-[#1D253080] dark:text-gray-400 overflow-y-auto scroll-smooth">
                                     {file?.description}
                                 </p>
@@ -183,6 +267,15 @@ const ResourcesPreview = () => {
                                 {/* <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                                     {formatBytes(file.file_size)}
                                 </div> */}
+=======
+                                <p className="scroll-hidden text-sm text-[#1D253080] dark:text-gray-400 h-[80px] overflow-y-auto scroll-smooth">
+                                    {file?.description}
+                                </p>
+
+                                <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                    {formatBytes(file.file_size)}
+                                </div>
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
                                 <div className="flex gap-2 mt-4">
 
@@ -199,6 +292,11 @@ const ResourcesPreview = () => {
                     )}
                 </div>
             )}
+<<<<<<< HEAD
+=======
+
+            {/* Preview Modal */}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
             {previewUrl && (
                 <div
                     role="dialog"

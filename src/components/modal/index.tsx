@@ -7,8 +7,11 @@ interface ModalProps {
   children: ReactNode;
   backdropBlur?: string;
   backdropOpacity?: string;
+<<<<<<< HEAD
   /** When true, disable all user-initiated cancel actions (ESC, backdrop, X button) */
   noCancel?: boolean;
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -17,7 +20,10 @@ const Modal: React.FC<ModalProps> = ({
   children,
   backdropBlur = "backdrop-blur-sm",
   backdropOpacity = "bg-black/40",
+<<<<<<< HEAD
   noCancel = false,
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [animate, setAnimate] = useState(false);
@@ -25,6 +31,10 @@ const Modal: React.FC<ModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       setIsMounted(true);
+<<<<<<< HEAD
+=======
+      // prevent body scroll
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       setTimeout(() => setAnimate(true), 10);
@@ -38,6 +48,7 @@ const Modal: React.FC<ModalProps> = ({
   }, [isOpen]);
 
   useEffect(() => {
+<<<<<<< HEAD
     if (!isOpen || noCancel) return;
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -49,6 +60,18 @@ const Modal: React.FC<ModalProps> = ({
   if (!isMounted) return null;
   const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
     if (noCancel) return;
+=======
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    if (isOpen) document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [isOpen, onClose]);
+
+  if (!isMounted) return null;
+
+  const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     if (e.target === e.currentTarget) onClose();
   };
 
@@ -59,11 +82,16 @@ const Modal: React.FC<ModalProps> = ({
       onClick={handleBackdropClick}
     >
       <div
+<<<<<<< HEAD
+=======
+        // key changes: max-h + overflow-y-auto + overflow-visible + responsive width
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
         className={`bg-white dark:bg-[#3D3E43] rounded-xl shadow-lg p-6 w-full max-w-md mx-4 relative
           transform transition-all duration-300 ease-out
           ${animate ? "scale-100 opacity-100" : "scale-95 opacity-0"}
           max-h-[95vh] overflow-y-auto overflow-visible`}
       >
+<<<<<<< HEAD
         {!noCancel && (
           <button
             type="button"
@@ -74,6 +102,16 @@ const Modal: React.FC<ModalProps> = ({
             <IoClose size={24} className="dark:text-white" />
           </button>
         )}
+=======
+        <button
+          type="button"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <IoClose size={24} className=" dark:text-white"/>
+        </button>
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
         {children}
       </div>
@@ -82,3 +120,104 @@ const Modal: React.FC<ModalProps> = ({
 };
 
 export default Modal;
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { type ReactNode, useEffect, useState, type MouseEvent } from "react";
+// import { IoClose } from "react-icons/io5";
+
+// interface ModalProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+//   children: ReactNode;
+//   backdropBlur?: string;
+//   backdropOpacity?: string;
+// }
+
+// const Modal: React.FC<ModalProps> = ({
+//   isOpen,
+//   onClose,
+//   children,
+//   backdropBlur = "backdrop-blur-sm",
+//   backdropOpacity = "bg-black/40",
+// }) => {
+//   const [isMounted, setIsMounted] = useState(false);
+//   const [animate, setAnimate] = useState(false);
+
+  
+//   useEffect(() => {
+//     if (isOpen) {
+//       setIsMounted(true);
+//       setTimeout(() => setAnimate(true), 10);
+//     } else {
+//       setAnimate(false);
+//       setTimeout(() => setIsMounted(false), 250); 
+//     }
+//   }, [isOpen]);
+
+ 
+//   useEffect(() => {
+//     const handleEsc = (event: KeyboardEvent) => {
+//       if (event.key === "Escape") onClose();
+//     };
+//     if (isOpen) document.addEventListener("keydown", handleEsc);
+//     return () => document.removeEventListener("keydown", handleEsc);
+//   }, [isOpen, onClose]);
+
+//   if (!isMounted) return null;
+
+ 
+//   const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
+//     if (e.target === e.currentTarget) {
+//       onClose();
+//     }
+//   };
+
+//   return (
+//     <div
+//       className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ease-out
+//       ${backdropBlur} ${backdropOpacity} ${animate ? "opacity-100" : "opacity-0"}`}
+//       onClick={handleBackdropClick}
+//     >
+//       <div
+//         className={`bg-white rounded-xl shadow-lg p-6 max-w-md w-full relative transform transition-all duration-300 ease-out
+//         ${animate ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
+//       >
+       
+//         <button
+//           className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+//           onClick={onClose}
+//         >
+//           <IoClose size={24} />
+//         </button>
+//         {children}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Modal;
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1

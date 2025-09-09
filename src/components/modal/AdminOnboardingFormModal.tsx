@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 import InputField from "@/features/auth/components/InputField";
 import Button from "../Button";
 import Modal from "@/components/modal";
@@ -12,21 +13,40 @@ import { useProfile } from "@/hooks/useUser";
 import type { UserData } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useEffect } from "react";
+=======
+import InputField from "../../features/auth/components/InputField";
+import Button from "../Button";
+import Modal from "./";
+import { Controller, useForm } from "react-hook-form";
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 interface Props {
     setOpen: (value: boolean) => void,
     open: boolean
 }
+<<<<<<< HEAD
 
 const AdminOnboardingFormModal = ({ setOpen, open }: Props) => {
     const { authUser, setIsReady } = useAppContext()
     const { mutate, isPending, isSuccess } = useCompany()
     const { data: meData, isLoading } = useProfile(isSuccess)
+=======
+type AdminOnboardingValues = {
+    name: string;
+    company: string;
+};
+
+const AdminOnboardingFormModal = ({ setOpen, open }: Props) => {
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     const {
         handleSubmit,
         control,
         formState: { errors, isSubmitting },
+<<<<<<< HEAD
     } = useForm<AdminFormValue>({
         resolver: zodResolver(adminSchema),
+=======
+    } = useForm<AdminOnboardingValues>({
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
         defaultValues: {
             name: "",
             company: "",
@@ -34,6 +54,7 @@ const AdminOnboardingFormModal = ({ setOpen, open }: Props) => {
     });
 
     const onSubmit = (data: any) => {
+<<<<<<< HEAD
         mutate(data, {
             onSuccess(data) {
                 toast.success(data?.message || "Company created successfully")
@@ -57,6 +78,20 @@ const AdminOnboardingFormModal = ({ setOpen, open }: Props) => {
         <div>
 
             <Modal isOpen={open} onClose={() => setOpen(false)} noCancel={true}>
+=======
+        setOpen(false);
+    };
+
+    const onCancel = () => {
+        setOpen(false);
+    };
+
+    return (
+        <div>
+
+            <Modal isOpen={open} onClose={() => setOpen(false)}>
+
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 dark-form-field">
                     <div className="text-start w-full text-[#1D2530] text-xl font-medium dark:text-white">Admin Onboarding</div>
                     {/* Name */}
@@ -97,15 +132,25 @@ const AdminOnboardingFormModal = ({ setOpen, open }: Props) => {
 
 
                     <div className="flex items-center justify-end gap-3 pt-2">
+<<<<<<< HEAD
                         {/* {onCancel && (
                             <Button
                                 variant="outline"
                                 className="!text-[#2E313980] !border-[#2E313926]"
+=======
+                        {onCancel && (
+                            <Button
+                                variant="outline"
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                                 onClick={onCancel}
                             >
                                 Cancel
                             </Button>
+<<<<<<< HEAD
                         )} */}
+=======
+                        )}
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                         <Button
                             type="submit"
                             loading={isSubmitting}

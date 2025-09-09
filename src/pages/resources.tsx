@@ -1,4 +1,5 @@
 import Icon from "../components/Icon";
+<<<<<<< HEAD
 import SearchInput from "@/components/searchInput";
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
@@ -8,6 +9,16 @@ import Button from "@/components/Button";
 import { useFolders, useResources } from "@/hooks/useResource";
 import { formErrorToast } from "@/util/formErrorToast";
 import Pagination from "@/components/Pagination";
+=======
+import SearchInput from "../features/searchInput";
+import { Link } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import useSearchQuery from "../util/querySearch";
+import { parseJwt } from "../util/jwt";
+import Button from "../components/Button";
+import { useResources } from "../hooks/useResource";
+import { formErrorToast } from "../util/formErrorToast";
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
 interface FolderTypes {
     id: number;
@@ -23,8 +34,13 @@ interface FolderTypes {
 
 
 const Resources = () => {
+<<<<<<< HEAD
     const { setFilter, queryString, page, goToPage } = useSearchQuery()
     const { data: resources, isLoading, isError, error } = useFolders(queryString, 20);
+=======
+    const { data: resources, isLoading, isError, error } = useResources();
+    const { setFilter, params, groupedQueries } = useSearchQuery()
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     const payload = parseJwt();
     const role = payload?.role ?? "";
     if (isError) {
@@ -44,7 +60,11 @@ const Resources = () => {
                         Access 140+ fillable safety and compliance documents
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div className="text-sm ms-auto sm:mt-0 mt-3 font-medium text-dark-default dark:text-white rounded-full border border-[#1D253026] dark:border-gray-700 px-3 py-2 flex items-center gap-[6px]">
+=======
+                <div className="text-sm ms-auto font-medium text-dark-default dark:text-white rounded-full border border-[#1D253026] dark:border-gray-700 px-3 py-2 flex items-center gap-[6px]">
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                     <Icon name="training" className="text-[10px]" />3/140 Available
                 </div>
             </div>
@@ -55,12 +75,21 @@ const Resources = () => {
                     className="w-full rounded-xl bg-white dark:bg-[#2C2D34] px-4 py-3 md:px-5 md:py-4 border border-transparent dark:border-gray-700"
                     style={{ boxShadow: "#1556D4 0px 0px 5px" }}
                 >
+<<<<<<< HEAD
                     <div className="flex items-center justify-between gap-4 sm:flex-row flex-col">
                         <div className="min-w-0 flex-1">
                             <div className="font-medium text-[#1D2530] dark:text-white">
                                 Limited Access
                             </div>
                             <p className="text-sm text-slate-500 dark:text-[#FFFFFF80]">
+=======
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="min-w-0">
+                            <div className="text-[15px] font-semibold text-slate-800 dark:text-white">
+                                Limited Access
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-[#FFFFFF80] truncate">
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                                 Your trial plan includes access to 3 compliance documents
                             </p>
                         </div>
@@ -76,7 +105,10 @@ const Resources = () => {
             {/* Search */}
             <div className="h-[72px] rounded-xl bg-white dark:bg-[#2C2D34] flex items-center px-4 border border-transparent dark:border-gray-700">
                 <SearchInput
+<<<<<<< HEAD
                     disabled={isLoading}
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                     className="border-none w-full !mt-0"
                     placeholder="Search topics by name..."
                     inputClass="dark:placeholder:text-white/50"
@@ -114,6 +146,7 @@ const Resources = () => {
                         ))}
                 </div>
             )}
+<<<<<<< HEAD
             {resources?.count > 20 &&
                 <div className="flex justify-center">
                     <Pagination
@@ -123,6 +156,8 @@ const Resources = () => {
                     />
                 </div>
             }
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
         </div>
     );
 };

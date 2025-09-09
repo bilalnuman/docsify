@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import React, { useState, type ChangeEvent } from 'react';
+=======
+import React from 'react';
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 import { registerSchema } from '../schemas/authSchema';
 import { useAuthForm } from '../hooks/useAuthForm';
 import AuthForm, { type fieldsType } from '../components/AuthForm';
 import { toast } from 'react-toastify';
+<<<<<<< HEAD
 import { formErrorToast } from '@/util/formErrorToast';
 import AppLogo from "@/assets/images/logo.svg"
 import FormSide from '../components/FormSide';
@@ -22,6 +27,24 @@ const RegisterPage: React.FC = () => {
                 toast.success(data?.message, { toastId: "Registration-success" });
                 reset()
                 navigate("/login", { replace: true })
+=======
+import { formErrorToast } from '../../../util/formErrorToast';
+import AppLogo from "../../../assets/images/logo.png"
+import FormSide from '../components/FormSide';
+import DarkModeToggle from '../../../components/DarkModeToggle';
+import AppDarkLogo from "../../../assets/images/dark-logo.png"
+import { Link } from 'react-router-dom';
+import { useRegistration } from '../../../hooks/useAuth';
+
+
+const RegisterPage: React.FC = () => {
+    const { mutateAsync: register, isPending } = useRegistration()
+    const { handleSubmit, control, errors, onSubmit, reset } = useAuthForm(registerSchema, async (data:any) => {
+        register(data, {
+            onSuccess(data: any) {
+                toast.success(data?.message, { toastId: "Registration-success" });
+                reset()
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
             },
             onError(error) {
                 // @ts-ignore
@@ -31,6 +54,7 @@ const RegisterPage: React.FC = () => {
         })
     });
 
+<<<<<<< HEAD
     const handleTerms = (e: ChangeEvent<HTMLInputElement>) => {
         setTerms(e.target.checked)
         if (e.target.checked) {
@@ -43,6 +67,8 @@ const RegisterPage: React.FC = () => {
         }
     }
 
+=======
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
     const fields: fieldsType[] = [
         { name: 'name', label: 'Name', type: 'text', placeholder: "Enter your name" },
@@ -51,6 +77,11 @@ const RegisterPage: React.FC = () => {
         { name: 'confirmPassword', label: 'Confirm Password', type: 'password', placeholder: '*********' },
     ];
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
     return (
         <div className='min-h-screen'>
             <div className='max-w-[1440px] mx-auto'>
@@ -63,13 +94,18 @@ const RegisterPage: React.FC = () => {
                             <DarkModeToggle />
                         </div>
                         <AuthForm
+<<<<<<< HEAD
                             className='max-w-[500px] mx-auto min-h-[calc(100vh-1rem)] !pt-20 sm:block flex flex-col justify-center'
+=======
+                            className='max-w-[500px] mx-auto sm:h-full h-[calc(100vh_-_7rem)] sm:block flex flex-col justify-center'
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                             control={control}
                             fields={fields}
                             errors={errors}
                             isSubmitting={isPending}
                             onSubmit={handleSubmit(onSubmit)}
                             buttonText="Sign Up"
+<<<<<<< HEAD
                             formFooter={
                                 <>
                                     <div className='flex items-center gap-1 accent-[#1556D4] font-normal mb-5 md:text-base text-xs'>
@@ -98,6 +134,17 @@ const RegisterPage: React.FC = () => {
                             <div className='text-center text-sm text-[#1D253080] dark:text-white mt-2 mb-3'>
                                 Already have an account? <Link to="/login" className="text-[#1556D4] underline font-bold">Sign In</Link>
 
+=======
+                            formHeader={
+                                <div>
+                                    <div className='text-3xl font-bold capitalize text-[#1D2530] dark:text-white'>Sign Up</div>
+                                    <div className='text-[#1D253080] mb-7 dark:text-white'>Start your 7 days free trial</div>
+                                </div>
+                            }
+                        >
+                            <div className='text-center text-sm text-[#1D253080] dark:text-white mt-2'>
+                                Already have an account? <Link to="/login" className="text-[#1556D4] underline font-bold">Sign In</Link>
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
                             </div>
                         </AuthForm>
                     </div>

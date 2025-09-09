@@ -1,7 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
+<<<<<<< HEAD
 import AppLogo from "@/assets/images/logo.svg";
 import AppDarkLogo from "@/assets/images/dark-logo.svg";
 import DarkModeToggle from "@/components/DarkModeToggle";
+=======
+import AppLogo from "../../../assets/images/logo.png";
+import AppDarkLogo from "../../../assets/images/dark-logo.png";
+import DarkModeToggle from "../../../components/DarkModeToggle";
+import BglightMode from "../../../assets/images/light_mode.png"
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
 
 const Navbar = () => {
   const linkBase =
@@ -26,9 +33,15 @@ const Navbar = () => {
           <a href="#pricing" className={linkBase}>
             Pricing
           </a>
+<<<<<<< HEAD
           {/* <NavLink to="/contactus" className={linkBase}>
             Contact Us
           </NavLink> */}
+=======
+          <NavLink to="/contactus" className={linkBase}>
+            Contact Us
+          </NavLink>
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
         </nav>
 
         {/* Actions */}
@@ -74,4 +87,105 @@ const Navbar = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Navbar;
+=======
+export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import { Link } from "react-router-dom";
+
+// import AppLogo from "../../../assets/images/logo.png"
+// import DarkModeToggle from "../../../components/DarkModeToggle";
+
+// const Navbar = () => {
+//     return (
+//         <header className="bg-white border-b">
+//             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+//                 {/* Logo */}
+//                 <div className="text-xl font-bold text-[#1556D4]">
+//                     <img src={AppLogo} alt="logo" width={105} />
+//                 </div>
+
+//                 {/* Links */}
+//                 <nav className="hidden md:flex space-x-8">
+//                     <Link to="/" className="text-[#1D253080] hover:text-[#1556D4]">Home</Link>
+//                     <a href="#pricing" className="text-[#1D253080] hover:text-[#1556D4]">Pricing</a>
+//                     <Link to="/contactus" className="text-[#1D253080] hover:text-[#1556D4]">Contact Us</Link>
+//                 </nav>
+
+//                 {/* Buttons */}
+//                 <div className="flex space-x-4">
+//                     <Link to="/login" className="px-4 py-2 rounded-xl font-medium border border-[#1556D4] text-[#1556D4] hover:bg-blue-50">
+//                         Sign In
+//                     </Link>
+//                     <Link to="/register" className="px-4 py-2 rounded-xl font-medium bg-[#1556D4] text-white hover:bg-blue-700">
+//                         Sign Up
+//                     </Link>
+//                     <DarkModeToggle />
+//                 </div>
+//             </div>
+//         </header>
+//     );
+// };
+
+// export default Navbar;
+>>>>>>> 66ef85ec540ae67b37954eb6a1fc1bb56427b7c1
