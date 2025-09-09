@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+
+:root {
+    --font-archivo: 'Archivo', sans-serif;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    @apply font-archivo bg-[#1556D40D] text-[#1D2530] text-base
+}
+
+
+html.dark body {
+    @apply bg-black
+}
+
+.dark input:-webkit-autofill {
+    background-color: transparent !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+
+html.dark body .disabled-form input,
+html.dark body .disabled-form textarea,
+html.dark body .disabled-form label {
+    @apply cursor-not-allowed pointer-events-none opacity-50
+}
+
+html.dark body select,
+html.dark body input:not(.stripe-modal input),
+html.dark body textarea {
+    @apply !bg-[#2C2D34] border-[#2C2D34] !text-white
+}
+
+html.dark body label {
+    @apply dark:text-white
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.5);
+}
+
+.dark .profile input,
+.dark .profile select,
+.dark .profile textarea {
+    @apply !bg-black
+}
+
+html.dark input[type="date"] {
+    color-scheme: dark;
+}
+
+body .bg-gradient {
+    background: linear-gradient(90deg, #4182FF 0%, #053694 100%);
+    transition: all ease-in-out 0.5s;
+}
+
+.disabled-form input,
+.disabled-form textarea,
+.disabled-form label {
+    @apply cursor-not-allowed pointer-events-none
+}
+
+@layer utilities {
+    .date-no-native-icon::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        display: block;
+        width: 1.75rem;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .date-no-native-icon::-webkit-inner-spin-button,
+    .date-no-native-icon::-webkit-clear-button {
+        display: none;
+    }
+
+    html.dark .date-no-native-icon {
+        color-scheme: dark;
+    }
+}
+
+
+.scroll-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+
+.scroll-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.dark a.active {
+    color: white !important;
+    font-weight: bold;
+}
+
+a.active {
+    color: #1556D4 !important;
+    font-weight: bold;
+}
+
+.dark .dark-form-field input,
+.dark .dark-form-field textarea,
+.dark .dark-form-field select {
+    background: #1A1B20 !important;
+    border-color: #1A1B20 !important;
+}
+
+form label {
+    @apply text-start
+}
+
+.OffsetContainer {
+    display: none !important;
+}
+
+.free-card button {
+    @apply md:absolute md:bottom-6 md:start-[6%] md:max-w-[88%] md:mt-auto
+}
+
+.change-password-form .bg-white {
+    @apply !bg-transparent !p-0
+}
+
+@media(min-width:1024px) {
+    .pb400 {
+        padding-bottom: 400px;
+    }
+
+    .dark .hero {
+        background: url("./assets/images/dark_mode.png");
+    }
+
+    .hero {
+        background: url("./assets//images//light_mode.png");
+    }
+
+    .hero,
+    .dark .hero {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+body .bg-gradient:hover {
+    transition: all ease-in-out 0.5s;
+    background: linear-gradient(90deg,
+            rgba(65, 130, 255, 0.7) 0%,
+            rgba(5, 54, 148, 0.7) 100%);
+}
+
+.dark form {}
