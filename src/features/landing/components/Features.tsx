@@ -3,10 +3,10 @@ import { AiOutlineSafety, AiOutlineTeam, AiOutlineGlobal } from "react-icons/ai"
 import { MdOutlineEventNote } from "react-icons/md";
 
 const features = [
-    { icon: <AiOutlineSafety size={24} />, title: "AI Powered Training", desc: "Generate engaging training material in minutes" },
-    { icon: <MdOutlineEventNote size={24} />, title: "Safety Meetings", desc: "Document and streamline your safety meetings" },
-    { icon: <AiOutlineTeam size={24} />, title: "Team Management", desc: "Track team progress and assign training" },
-    { icon: <AiOutlineGlobal size={24} />, title: "Multi-Language", desc: "Full support for multiple languages" },
+    { icon: <AiOutlineSafety size={24} />, title: "AI Powered Training", desc: "Auto-generate tool-specific training with PPE, operation, safety, emergency procedures, and signature lines." },
+    { icon: <MdOutlineEventNote size={24} />, title: "Safety Meetings", desc: "Enter a subject to auto-generate a job-specific safety topic with hazards, safety points, and attendance sheet." },
+    { icon: <AiOutlineTeam size={24} />, title: "Compliance Forms", desc: "Access 140+ OSHA-compliant forms — Fall Protection, Rescue, Exposure Control, Inspections, and more." },
+    { icon: <AiOutlineGlobal size={24} />, title: "Multi-Language", desc: "Generate docs and use the platform in English or Spanish for crew compliance." },
 ];
 
 const Features = () => {
