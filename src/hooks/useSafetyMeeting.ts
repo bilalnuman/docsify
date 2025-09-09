@@ -2,13 +2,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../api/api";
 
 
-export function useGetData(queryString: string, pageSize = 20) {
+export function useGetData(queryString?: string, pageSize = 20) {
 
     return useQuery({
         queryKey: ["use-get-data", queryString, pageSize],
         queryFn: () =>
             api
-                .get(`/v1/topic-meeting-generations/?${queryString}&page_size=${pageSize}/`)
+                .get(`/v1/topic-meeting-generations/?${queryString}page_size=${pageSize}/`)
                 .then((res) => res.data),
 
     });

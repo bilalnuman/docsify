@@ -25,7 +25,7 @@ const SafetyMeetingsComponent = () => {
     const [isEdit, setIsEdit] = useState<any>();
     const modalRef = useRef<any>(null);
     const { setFilter, queryString, page, goToPage } = useSearchQuery()
-    const { data, isLoading, error, isFetching, isError } = useGetData(queryString, 20)
+    const { data, isLoading, error, isFetching, isError } = useGetData(queryString?`${queryString}&`:"")
     const { mutateAsync: updateSafety, isPending } = useUpdateSafety()
     const { mutateAsync: deleteTopic, isPending: isDeleting } = useDeleteTopic();
 
