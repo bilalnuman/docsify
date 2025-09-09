@@ -35,9 +35,12 @@ html.dark body .disabled-form label {
 }
 
 html.dark body select,
-html.dark body input:not(.stripe-modal input),
+html.dark body input,
 html.dark body textarea {
     @apply !bg-[#2C2D34] border-[#2C2D34] !text-white
+}
+.stripe-modal input{
+    background: transparent !important;
 }
 
 html.dark body label {
@@ -116,8 +119,8 @@ a.active {
 .dark .dark-form-field input,
 .dark .dark-form-field textarea,
 .dark .dark-form-field select {
-    background: #1A1B20 !important;
-    border-color: #1A1B20 !important;
+    /* background: #1A1B20 !important; */
+    /* border-color: #1A1B20 !important; */
 }
 
 form label {
