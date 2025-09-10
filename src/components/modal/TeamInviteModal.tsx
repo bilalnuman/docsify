@@ -13,7 +13,7 @@ import { useInviteMember } from "@/hooks/useTeam";
 import { nameSchema } from "@/features/auth/schemas/authSchema";
 
 export const inviteSchema = z.object({
-    name: nameSchema,
+    name: nameSchema("Name"),
     email: z
         .string("Please enter a valid email address")
         .email("Please enter a valid email address"),
