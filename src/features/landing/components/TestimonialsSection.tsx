@@ -27,7 +27,7 @@ const TESTIMONIALS: Testimonial[] = [
         name: "Gabriela Morales",
         role: "Safety manager, Riverside Construction",
         quote: `Safety manager, Riverside Construction
-The safety meeting feature is a game-changer. We recently had to work near trenching after rain. I generated a job-specific meeting with hazards and prevention steps.`,
+The safety meeting feature is a game-changer. We recently had to work near trenching after rain. I generated a job-specific meeting with hazards and prevention steps. `,
     },
     {
         pic: joseph,

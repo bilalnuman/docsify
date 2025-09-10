@@ -13,12 +13,14 @@ import Pagination from "@/components/Pagination";
 import { formErrorToast } from "@/util/formErrorToast";
 import { toast } from "react-toastify";
 import { useAppContext } from "@/context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const pageRoutes = {
     0: "training/falling-debris",
 };
 
 const TrainingComponent = () => {
+    const{t}=useTranslation()
     const { user } = useAppContext();
     const navigate = useNavigate();
     const { setFilter, queryString, goToPage, page } = useSearchQuery()
@@ -66,10 +68,10 @@ const TrainingComponent = () => {
             <div className="mt-5 flex justify-between flex-wrap gap-3">
                 <div>
                     <div className="text-[28px] font-semibold text-dark-default dark:text-white">
-                        Tool & Equipment Training
+                       {t("toolEquipmentTraining")}
                     </div>
                     <div className="text-[#1D253080] dark:text-[#FFFFFF80] pt-2">
-                        Upload a tool or equipment manual to generate training
+                        {t("uploadToolManual")}
                     </div>
                 </div>
                 {
@@ -82,7 +84,7 @@ const TrainingComponent = () => {
                      sm:h-[52px] rounded-xl ms-auto"
                         iconLeft={<CiCirclePlus className="text-2xl" />}
                     >
-                        New Training
+                        {t("newTraining")}
                     </Button>
                 }
             </div>
@@ -91,7 +93,7 @@ const TrainingComponent = () => {
             <div className="h-[72px] rounded-xl bg-white dark:bg-[#2C2D34] flex items-center px-4 shadow-sm dark:border dark:border-white/10">
                 <SearchInput
                     className="w-full !mt-0"
-                    placeholder="Search by tool or equipment name..."
+                    placeholder={`${t('searchByTool')}...`}
                     inputClass="placeholder:dark:text-[#FFFFFF80]"
                     disabled={isFetching}
                     delay={700}

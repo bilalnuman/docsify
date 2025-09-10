@@ -15,7 +15,7 @@ export const email = z
 
 export const nameSchema = (fieldName: string, maxLength: number = 50,minLength=1) =>
     z
-        .string()
+        .string(`${fieldName} is required`)
         .min(minLength, `${fieldName} is required`)
         .max(maxLength, `${fieldName} must be at most ${maxLength} characters`)
         .refine((v) => v === v.trim(), {
@@ -77,12 +77,8 @@ export const resetSchema = z.object({
 });;
 
 export const adminSchema = z.object({
-    name: nameSchema("Name"),
-    company: z.string()
-        .min(1, { message: "Company name is required" })
-        .regex(/^[A-Za-z]+$/, {
-            message: "Only alphabets allowed (no spaces, no emojis, no numbers)",
-        })
+    name: nameSchema("Name",50),
+    company: nameSchema("Company",50),
 });
 
 

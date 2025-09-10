@@ -6,6 +6,7 @@ import Button from "@/components/Button";
 import { AiOutlineLogout } from "react-icons/ai";
 import { clearCookiesAndStorage } from "@/helpers/logoutUser";
 import { useAppContext } from "@/context/AppContext";
+import { useTranslation } from "react-i18next";
 
 
 type SubMenu = {
@@ -34,6 +35,7 @@ const Sidebar: React.FC<SidebarProps> = ({ logo, menuItems, sticky = true, toggl
   const [openMenu, setOpenMenu] = useState<string>("");
   const navigate = useNavigate();
   const { authUser } = useAppContext()
+  const { t } = useTranslation();
 
   const toggleMenu = (path: string) => {
     setOpenMenu((prev) => (prev === path ? "" : path));
@@ -144,7 +146,7 @@ const Sidebar: React.FC<SidebarProps> = ({ logo, menuItems, sticky = true, toggl
         </nav>
       </div>
       <div className="xl:px-6 px-3 pt-4 w-full">
-        <Button onClick={handleLogout} variant="ghost" className="dark:!text-white !text-sm xl:!py-4 !py-3 !rounded-xl hover:!bg-blue-default/90 dark:hover:!bg-[#1A1B20] w-full !gap-0 !font-medium !justify-start hover:!text-white" iconLeft={<AiOutlineLogout size={24} />}>Logout</Button>
+        <Button onClick={handleLogout} variant="ghost" className="dark:!text-white !text-sm xl:!py-4 !py-3 !rounded-xl hover:!bg-blue-default/90 dark:hover:!bg-[#1A1B20] w-full !gap-0 !font-medium !justify-start hover:!text-white capitalize" iconLeft={<AiOutlineLogout size={24} />}>{t("logout")}</Button>
       </div>
     </>
   );

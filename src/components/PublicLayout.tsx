@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import DarkModeToggle from './DarkModeToggle'
 import AppLogo from "@/assets/images/logo.svg";

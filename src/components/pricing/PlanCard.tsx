@@ -66,8 +66,8 @@ export function PlanCard({
   return (
     <div
       className={clsx(
-        "relative rounded-xl border bg-white dark:bg-transparent shadow-sm",
-        highlighted ? "border-blue-default" : "border-gray-200 dark:border-white/10 h-full",
+        "relative rounded-xl border bg-white dark:bg-[#2C2D34] shadow-sm",
+        highlighted ? "border-blue-default dark:border-white" : "border-gray-200 dark:border-white/10 h-full",
         className
       )}
       data-highlighted={highlighted || undefined}
@@ -78,7 +78,7 @@ export function PlanCard({
         </div>
       )}
 
-      <div className="p-6 dark:border-white/10 bg-white dark:bg-[#2C2D34] rounded-xl">
+      <div className="p-6 bg-white dark:bg-[#2C2D34] rounded-xl">
         {/* Header */}
         <div className="mt-2 flex flex-col items-center">
           <h3 className="text-lg font-medium text-[#1D2530] dark:text-white">{title}</h3>
@@ -105,7 +105,7 @@ export function PlanCard({
         {/* Features */}
         <ul className="mt-4 space-y-2 text-sm text-[#1D2530] dark:text-gray-100">
           {features.map((f, i) => (
-            <li key={i} className="flex items-start gap-2">
+            <li key={i} className="flex items-start gap-2 text-justify">
               {typeof f === "string" ? (
                 <>
                   {DefaultIcon}
@@ -124,9 +124,9 @@ export function PlanCard({
           onClick={onSelect}
           disabled={disabled}
           className={clsx(
-            "mt-6 w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors",
+            "mt-6 w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors dark:border-white hover:dark:!bg-white  dark:hover:!text-dark-dark-text",
             highlighted
-              ? "bg-[#1556D4] text-white hover:bg-[#1556D4]/90"
+              ? "bg-[#1556D4] dark:bg-white text-white hover:bg-[#1556D4]/90  dark:!text-dark-dark-text"
               : "border-[#1556D4] border text-dark-default dark:text-gray-100 hover:text-white hover:bg-[#1556D4]",
             disabled && "opacity-60 cursor-not-allowed"
           )}

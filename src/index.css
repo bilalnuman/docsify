@@ -140,8 +140,8 @@ form label {
 }
 
 @media(min-width:1024px) {
-    .pb400 {
-        padding-bottom: 400px;
+    .pb500 {
+        padding-top: 500px;
     }
 
     .dark .hero {
@@ -149,14 +149,14 @@ form label {
     }
 
     .hero {
-        background: url("./assets//images//light_mode.png");
+        background: url("./assets//images/light_mode.png");
     }
 
     .hero,
     .dark .hero {
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: 50% 100%;
     }
 }
 

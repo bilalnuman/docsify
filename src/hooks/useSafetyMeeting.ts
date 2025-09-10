@@ -8,7 +8,7 @@ export function useGetData(queryString?: string, pageSize = 20) {
         queryKey: ["use-get-data", queryString, pageSize],
         queryFn: () =>
             api
-                .get(`/v1/topic-meeting-generations/?${queryString}page_size=${pageSize}/`)
+                .get(`/v1/topic-meeting-generations/?${queryString}&page_size=${pageSize}/`)
                 .then((res) => res.data),
 
     });

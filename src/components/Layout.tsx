@@ -11,13 +11,17 @@ import Sidebar from "@/components/sidebar/sidebar";
 import { useAppContext } from '@/context/AppContext';
 import { getInitials } from '@/helpers/getInitials';
 import Profile from './Profile';
+import LanguageToggle from './LanguageToggle';
+import { useTranslation } from 'react-i18next';
 
 const Layout: React.FC = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isBelowLg, setIsBelowLg] = useState(false);
     const location = useLocation();
     const { user } = useAppContext();
-
+    const { t,i18n } = useTranslation();
+    const lang=i18n?.resolvedLanguage
+    
     const initials = useMemo(() => getInitials(user?.profile?.name, user?.profile?.email), [user?.profile?.name, user?.profile?.email]);
 
     useEffect(() => {
@@ -50,7 +54,9 @@ const Layout: React.FC = () => {
     return (
         <div className="flex flex-col h-screen">
             <header className="fixed w-full h-[75px] bg-white dark:bg-[#2C2D34] flex items-center border-b border-[#1D25301A] dark:border-black/20 z-50">
-                <div className="flex items-center gap-3 px-4 md:border-e border-[#1D25301A] dark:border-black/20 h-full xl:min-w-[256px] xl:max-w-[256px] min-w-[200px] max-w-[200px]">
+                <div className={clsx("flex items-center gap-3 px-4 md:border-e border-[#1D25301A] dark:border-black/20 h-full xl:min-w-[256px] min-w-[200px]",
+                    lang==="es"?"pe-[90px] ps-[50px]":"max-w-[200px] xl:max-w-[256px]"
+                )}>
                     <button
                         type="button"
                         onClick={() => setMobileOpen(true)}
@@ -66,23 +72,23 @@ const Layout: React.FC = () => {
                     </Link>
                 </div>
                 <div className="flex-1 flex md:justify-between justify-end items-center xl:ps-8 md:ps-5 pe-4">
-                    <div className='md:block hidden'>
-                        <div className="text-lg font-medium text-dark-default dark:text-gray-100">Dashboard</div>
-                        <div className="text-[#1D253080] dark:text-white/50 text-sm">Welcome back, {userInfo?.name}</div>
+                    <div className="md:block hidden">
+                        <div className="text-lg font-medium text-dark-default dark:text-gray-100">
+                            {t("dashboard")}
+                        </div>
+
+                        <div className="text-[#1D253080] dark:text-white/50 text-sm">
+                            {t("welcome_back")} {userInfo?.name}
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-4 pe-2">
                         <DarkModeToggle />
-                        <div className="hidden sm:flex justify-center items-center cursor-pointer gap-2 h-10 w-[86px] rounded-lg border border-blue-default text-base text-blue-default dark:border-white dark:text-white">
-                            <Icon name='glob' />
-                            <span className='uppercase'>ES</span>
-                        </div>
+                        <LanguageToggle />
                         <Profile
                             user={userInfo}
                             initials={initials}
                         />
-
-
                     </div>
                 </div>
             </header>
@@ -90,7 +96,7 @@ const Layout: React.FC = () => {
                 <aside
                     className={clsx(
                         "hidden lg:block fixed top-[75px] h-[calc(100vh-75px)] z-40",
-                        "xl:min-w-[256px] xl:max-w-[256px] min-w-[200px] max-w-[200px]",
+                        "xl:min-w-[256px] xl:max-w-[280px] min-w-[200px]",
                         "border-e border-[#1D25301A] bg-white text-dark-default",
                         "dark:border-black/20 dark:bg-[#2C2D34] dark:text-gray-100 overflow-auto"
                     )}
@@ -131,7 +137,7 @@ const Layout: React.FC = () => {
 
                 <main className={clsx(
                     "flex-1 min-w-0 overflow-y-auto pe-5 pt-[90px] pb-5",
-                    "ps-5 lg:ps-[220px] xl:ps-[280px]"
+                    "ps-5 lg:ps-[220px] xl:ps-[280px]",lang==="es"?"lg:ps-[265px] xl:ps-[290px]":""
                 )}>
                     <Outlet />
                 </main>

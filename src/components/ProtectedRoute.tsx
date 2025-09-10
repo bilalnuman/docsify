@@ -4,7 +4,6 @@ import { useAppContext } from "@/context/AppContext";
 const ProtectedRoute = () => {
 const { user, isReady } = useAppContext();
     const location = useLocation();
-    console.log(user,"protected")
     if (!isReady) return null;
     
     if (!user) {
@@ -13,7 +12,7 @@ const { user, isReady } = useAppContext();
         }
         return <Outlet />;
     }
-    if (user.is_subscribed === false) {
+    if (user.is_subscribed === false ) {
         if (location.pathname !== "/") {
             return <Navigate to="/" replace />;
         }

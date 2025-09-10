@@ -10,11 +10,13 @@ import { Link } from "react-router-dom";
 import { useStats } from "@/hooks/useDashboard";
 import { statsIconColors } from "@/util/app-json-data";
 import { useAppContext } from "@/context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const DashboardComponent = () => {
   const { user } = useAppContext();
   const { data: statsData, isLoading } = useStats()
   const role = user?.profile?.role.toLowerCase();
+  const { t } = useTranslation();
 
 
   const actions = [
@@ -28,7 +30,7 @@ const DashboardComponent = () => {
   const viewer = [
     {
       icon: <MdOutlineFileDownload size={24} className="text-[#EF620F]" />,
-      label: "Downloads",
+      label: t("downloads"),
       key: "downloads",
       valueKey: "display"
     },
@@ -44,13 +46,13 @@ const DashboardComponent = () => {
   const baseStats = [
     {
       icon: <Icon name="training" className="text-[#1556D4]" />,
-      label: "Training Usage",
+      label: t("trainingUsage"),
       key: "training_usage",
       valueKey: "display"
     },
     {
       icon: <LuUsers size={24} className="text-[#21C35D]" />,
-      label: "Safety Meetings",
+      label: t("safetyMeetings"),
       key: "safety_meetings",
       valueKey: "display"
     },
@@ -88,11 +90,11 @@ const DashboardComponent = () => {
       </div>
 
       {/* Quick Actions */}
-      {role == "viewer" &&
+      {role !== "viewer" &&
         <div className="bg-white dark:bg-[#2C2D34] p-4 rounded-xl shadow-sm border border-transparent dark:border-white/10">
           <h3 className="text-[#1D2530] dark:text-white font-medium mb-3 text-xl flex items-center gap-2">
             <CgLoadbarSound size={24} />
-            Quick Actions
+            {t("quickActions")}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {actions.map((action, idx) => (
@@ -109,10 +111,10 @@ const DashboardComponent = () => {
         </div>}
 
       <div className="bg-white dark:bg-[#2C2D34] rounded-xl p-4 shadow-sm border border-transparent dark:border-white/10">
-        <h3 className="text-[#1D2530] dark:text-white font-medium mb-3 text-xl">Recent Activity</h3>
+        <h3 className="text-[#1D2530] dark:text-white font-medium mb-3 text-xl">{t("recentActivity")}</h3>
         <div className="flex flex-col gap-2">
           {
-            !recent_activity?.length ? <div className="py-4 text-center dark:text-white text-[#1D2530] text-sm font-semibold">Recent Activity Not Available</div> :
+            !recent_activity?.length ? <div className="py-4 text-center dark:text-white text-[#1D2530] text-sm font-semibold">{t("recentActivityNotAvailable")}</div> :
 
               recent_activity.map((activity: any, idx: number) => (
                 <div
@@ -126,16 +128,16 @@ const DashboardComponent = () => {
                     </div>
                     <div className="sm:ps-0 ps-3">
                       <div className="flex flex-wrap items-center gap-3">
-                        <p     className="min-w-0 break-words whitespace-normal font-medium text-dark-default dark:text-white text-sm sm:text-base">
-                          {activity?.description}
+                        <p className="min-w-0 break-words whitespace-normal font-medium text-dark-default dark:text-white text-sm sm:text-base">
+                          {t(activity?.description)}
                         </p>
                         <p className="text-sm text-dark-default dark:text-gray-300 flex sm:items-center sm:gap-2 capitalize sm:flex-row flex-col">
                           <span className="flex items-center gap-2">
                             <span className="flex text-lg">•</span>
-                            {activity?.user_name}
+                            {t(activity?.user_name)}
                           </span>
                           <span className="flex items-center gap-2">
-                            <span className="flex text-lg">•</span> {activity?.user_role}
+                            <span className="flex text-lg">•</span> {t(activity?.user_role)}
                           </span>
                         </p>
                       </div>
@@ -144,7 +146,7 @@ const DashboardComponent = () => {
                   </div>
                   <span className="text-xs text-dark-default dark:text-gray-200 rounded-full 
                                border border-[#1D253026] dark:border-white/10 px-2 py-1 w-fit ms-auto">
-                    {activity?.time_ago}
+                    {t(activity?.time_ago)}
                   </span>
                 </div>
               ))}

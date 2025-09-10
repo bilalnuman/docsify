@@ -1,12 +1,7 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-type FilterInput =
-  | string
-  | number
-  | null
-  | undefined
-  | Array<string | number>;
+type FilterInput = string | number | null | undefined | Array<string | number>;
 
 type SetFilterOptions = {
   resetFilters?: boolean;
@@ -17,16 +12,17 @@ type SetFilterOptions = {
 };
 
 const PAGE_KEY = "page";
+
 function normalizeValues(value: FilterInput): string[] {
   if (Array.isArray(value)) {
-    return value
-      .map((v) => (v ?? "").toString().trim())
-      .filter(Boolean);
+    return value.map((v) => (v ?? "").toString().trim()).filter(Boolean);
   }
   if (value === null || value === undefined) return [];
   const str = String(value).trim();
   return str ? [str] : [];
-} function toSortedQueryString(p: URLSearchParams): string {
+}
+
+function toSortedQueryString(p: URLSearchParams): string {
   const entries = Array.from(p.entries());
   entries.sort(([aK, aV], [bK, bV]) =>
     aK === bK ? aV.localeCompare(bV) : aK.localeCompare(bK)
@@ -38,10 +34,7 @@ function normalizeValues(value: FilterInput): string[] {
 
 export type UseSearchQueryReturn = {
   setFilter: (key: string, value: FilterInput, opts?: SetFilterOptions) => void;
-  setFilters: (
-    filters: Record<string, FilterInput>,
-    opts?: SetFilterOptions
-  ) => void;
+  setFilters: (filters: Record<string, FilterInput>, opts?: SetFilterOptions) => void;
   clearFilters: (excludeKeys?: string[]) => void;
   goToPage: (page: number, replace?: boolean) => void;
   params: URLSearchParams;
@@ -73,22 +66,26 @@ const useSearchQuery = (): UseSearchQueryReturn => {
 
   const navigateWithParams = useCallback(
     (p: URLSearchParams, replace = false) => {
+      // ★ CHANGED: ensure page is always present in the URL
+      if (!p.has(PAGE_KEY)) p.set(PAGE_KEY, "1");
       const qs = toSortedQueryString(p);
       navigate(qs ? `${location.pathname}?${qs}` : location.pathname, { replace });
     },
     [navigate, location.pathname]
   );
 
+  // ★ CHANGED: carry current page if valid, otherwise set 1 (never delete)
   const carryCurrentPageIfGt1 = useCallback(
     (target: URLSearchParams) => {
-      if (page > 1) target.set(PAGE_KEY, String(page));
-      else target.delete(PAGE_KEY);
+      if (page > 0) target.set(PAGE_KEY, String(page));
+      else target.set(PAGE_KEY, "1");
     },
     [page]
   );
 
+  // ★ CHANGED: resetting page should explicitly set page=1 (not delete)
   const resetPageTo1 = useCallback((target: URLSearchParams) => {
-    target.delete(PAGE_KEY);
+    target.set(PAGE_KEY, "1");
   }, []);
 
   const setFilter = useCallback(
@@ -183,14 +180,23 @@ const useSearchQuery = (): UseSearchQueryReturn => {
 
   const goToPage = useCallback(
     (to: number, replace = false) => {
-      const n = Number.isFinite(to) && to > 1 ? Math.floor(to) : 1;
+      // ★ CHANGED: always set a page value; 1 becomes '?page=1'
+      const n = Number.isFinite(to) && to > 0 ? Math.floor(to) : 1;
       const next = new URLSearchParams(params.toString());
-      if (n > 1) next.set(PAGE_KEY, String(n));
-      else next.delete(PAGE_KEY);
+      next.set(PAGE_KEY, String(n)); // never delete
       navigateWithParams(next, replace);
     },
     [params, navigateWithParams]
   );
+
+  // ★ Optional: on first mount, if page is missing, inject ?page=1 (replace history)
+  useEffect(() => {
+    if (!params.has(PAGE_KEY)) {
+      const next = new URLSearchParams(params.toString());
+      next.set(PAGE_KEY, "1");
+      navigateWithParams(next, true);
+    }
+  }, [params, navigateWithParams]);
 
   return useMemo(
     () => ({ setFilter, setFilters, clearFilters, goToPage, params, queryString, page, grouped }),

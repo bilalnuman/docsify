@@ -99,7 +99,7 @@ const TopicMeetingGenerator = () => {
                             <div className="h-14 w-14 bg-[#1556D41A] dark:bg-[#2C2D34] p-3 rounded-xl flex items-center justify-center">
                                 <FiUpload size={32} className="text-[#1556D4] dark:text-white" />
                             </div>
-                            {files?.[0] ? <div className="mt-3">{files?.[0]?.name}</div> : <>
+                            {files?.[0] ? <div className="mt-3 dark:text-white">{files?.[0]?.name}</div> : <>
                                 <div className="text-xl font-medium text-[#1D2530] dark:text-white pt-4">Drop Your PDF here</div>
                                 <div className="text-[#1D253080] text-sm dark:text-white">Or click to browse (PDF files only)</div>
                             </>}

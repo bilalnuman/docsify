@@ -59,6 +59,7 @@ const config = {
           default: "#1D2530",
           "default-dark": "#2C2D34",
           "dark-bg": "#1A1B20",
+          "dark-text": "#1A1B20",
         },
         gray: {
           default: "#1D253080"

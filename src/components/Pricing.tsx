@@ -25,9 +25,12 @@ const Pricing = ({ isFree = false }: Props) => {
     const navigate = useNavigate()
 
     const handleOpen = (plan: Plan) => {
-        console.log(user,"pricing")
-        if (user) {
+        console.log(user, "pricing")
+        if (user && Number(plan?.price) > 1) {
             setOpen(plan)
+        }
+        else if (Number(plan?.price) <= 1) {
+           alert("Free plan selected. Please upgrade your account.")    
         }
         else {
             navigate("/login")
@@ -52,7 +55,7 @@ const Pricing = ({ isFree = false }: Props) => {
     );
 
     useEffect(() => {
-        if (isError && error) formErrorToast(error||"Something went wrong");
+        if (isError && error) formErrorToast(error || "Something went wrong");
     }, [isError, error]);
 
     const formatUSD0 = useMemo(
@@ -108,7 +111,7 @@ const Pricing = ({ isFree = false }: Props) => {
                 <div className="flex justify-center">
                     <Spinner />
                 </div>
-            ) : !sorted?.length?<NotFound message="Faild to load plans"/>:(
+            ) : !sorted?.length ? <NotFound message="Faild to load plans" /> : (
                 <div className={clsx("grid grid-cols-1 gap-6", isFree ? "md:grid-cols-3" : "md:grid-cols-2")}>
                     {sorted.map((plan, i) => {
                         const highlighted = cheapestPaid !== null && Number(plan.price) === cheapestPaid;

@@ -85,7 +85,7 @@ const TrainingGeneratorComponent = () => {
             </div>
             {file ?
               // @ts-ignore
-              <div className="mt-3">{file?.name}</div>
+              <div className="mt-3 dark:text-white">{file?.name}</div>
               :
               <>
                 <div className="text-xl font-medium text-[#1D2530] dark:text-white pt-3">Drop Your PDF here</div>

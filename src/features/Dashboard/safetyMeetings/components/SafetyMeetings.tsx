@@ -14,18 +14,19 @@ import { toast } from "react-toastify";
 import { formErrorToast } from "@/util/formErrorToast";
 import type { NewSafetyModalFormValues } from "@/features/auth/schemas/authSchema";
 import Pagination from "@/components/Pagination";
-import { set } from "zod";
+import { useTranslation } from "react-i18next";
 
 const SafetyMeetingsComponent = () => {
+    const { t } = useTranslation()
     const navigate = useNavigate();
     const { user } = useAppContext();;
     const [open, setOpen] = useState(false);
-    const [deleteId, setDeleteId] = useState<number | boolean|any>();
+    const [deleteId, setDeleteId] = useState<number | boolean | any>();
     const role = user?.profile?.role.toLowerCase();
     const [isEdit, setIsEdit] = useState<any>();
     const modalRef = useRef<any>(null);
     const { setFilter, queryString, page, goToPage } = useSearchQuery()
-    const { data, isLoading, error, isFetching, isError } = useGetData(queryString?`${queryString}&`:"")
+    const { data, isLoading, error, isFetching, isError } = useGetData(queryString)
     const { mutateAsync: updateSafety, isPending } = useUpdateSafety()
     const { mutateAsync: deleteTopic, isPending: isDeleting } = useDeleteTopic();
 
@@ -77,10 +78,10 @@ const SafetyMeetingsComponent = () => {
             <div className="mt-5 flex justify-between sm:flex-row flex-col gap-3">
                 <div>
                     <div className="text-[28px] font-semibold text-dark-default dark:text-white">
-                        Safety Topics
+                        {t("safetyTopics")}
                     </div>
                     <div className="text-[#1D253080] dark:text-[#FFFFFF80] pt-2">
-                        Generate safety topics from an uploaded manual, or enter your own topic.
+                        {t("generateSafetyTopics")}
                     </div>
                 </div>
                 {role !== "viewer" &&
@@ -89,7 +90,7 @@ const SafetyMeetingsComponent = () => {
                         iconLeft={<CiCirclePlus className="text-2xl" />}
                         className="w-fit flex justify-center hover:bg-blue-default/90 duration-150 items-center gap-2 font-medium text-white bg-blue-default sm:h-[52px] rounded-xl ms-auto"
                     >
-                        New Safety Meeting
+                        {t("newSafetyMeeting")}
                     </Button>
                 }
             </div>
@@ -98,7 +99,7 @@ const SafetyMeetingsComponent = () => {
             <div className="h-[72px] rounded-xl bg-white dark:bg-[#2C2D34] flex items-center px-4">
                 <SearchInput onClick={(value) => setFilter("search", value, { resetFilters: true })}
                     className="w-full !mt-0"
-                    placeholder="Search by topic, project name, or job site address..."
+                    placeholder={`${t('searchByTopic')}...`}
                     inputClass="dark:placeholder:text-[#FFFFFF80]"
                     disabled={isFetching}
                     delay={700}
@@ -129,8 +130,8 @@ const SafetyMeetingsComponent = () => {
                                         >
                                             <div className="flex justify-between sm:items-center sm:flex-row flex-col gap-2">
                                                 <p className="text-xl font-medium text-dark-default dark:text-white flex items-center">
-                                                    {folder?.topic_name?.slice(0,12) || "N/A"} {folder?.topic_name?.length>12?"...":""}
-                                                    {role !=="viewer"&&<CiEdit size={20} title="Edit" className="cursor-pointer w-10" onClick={(e) => handleClick(e, folder?.id)} />}
+                                                    {folder?.topic_name?.slice(0, 12) || "N/A"} {folder?.topic_name?.length > 12 ? "..." : ""}
+                                                    {role !== "viewer" && <CiEdit size={20} title="Edit" className="cursor-pointer w-10" onClick={(e) => handleClick(e, folder?.id)} />}
                                                 </p>
                                                 <p className="text-[#1D253080] dark:text-[#FFFFFF80s] text-sm">
                                                     Created on  {folder?.date || "N/A"}
