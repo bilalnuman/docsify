@@ -51,7 +51,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
                     />
                     {enablePasswordToggle &&
                         <button type='button' onClick={() => setSecure(!secure)} className=' absolute end-3 top-1/2 -translate-y-1/2'>
-                            {secure ? <FaRegEye className='text-lg text-gray-700' /> : <FaRegEyeSlash className='text-lg text-gray-700' />}
+                            {secure ? <FaRegEye className='text-lg dark:text-blue-default' /> : <FaRegEyeSlash className='text-lg dark:text-blue-default' />}
                         </button>}
                 </div>
                 {error && <p className="text-sm text-red-500 mt-1">{error.message}</p>}

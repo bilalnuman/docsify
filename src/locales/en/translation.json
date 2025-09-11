@@ -43,5 +43,22 @@
   "marketingMessage": "Untrained workers cause accidents and OSHA fines. Stop wasting hours creating training. Upload any manual → instantly generate tool-specific training using OSHA guidelines. Print, sign, and stay compliant in English or Spanish.",
   "safetyMeetingMessage": "Don’t waste time on generic safety talks. Upload a manual or type a subject to instantly generate a job-specific safety meeting with hazards and OSHA safety guidelines.",
   "formsMessage": "Access 140+ ready-to-use, compliant PDF forms from Health & Safety Plan and Exposure Control Plan to Fall Protection Plan, Rescue Plan, Inspections, and OSHA recordkeeping forms.",
-  "startFreeTrial": "Start Free Trial"
+  "startFreeTrial": "Start Free Trial",
+  "resourcesLibrary": "Resources Library",
+  "fillableDocuments": "Fillable safety and compliance documents",
+  "access": "Access",
+  "limitedAccess": "Limited Access",
+  "trialPlanIncludes": "Your trial plan includes access to 3 compliance documents",
+  "available": "Available",
+  "upgradeToFullAccess": "Upgrade To Full Access",
+  "viewFiles": "View Files",
+  "searchTopicsByName": "Search topics by name",
+  "teamMembers": "Team Members",
+  "manageTeamAccess": "Manage team access and permissions",
+  "activeMembers": "Active Members",
+  "pendingInvites": "Pending Invites",
+  "totalMembers": "Total Members",
+  "pendingInvite": "Pending invite",
+  "lastActive": "Last active",
+  "noMembersFound": "No members found"
 }
